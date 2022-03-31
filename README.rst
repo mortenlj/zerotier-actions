@@ -18,4 +18,6 @@ Use ZeroTier to expose these endpoints in a secure manner, and use these actions
 Usage
 -----
 
+Requires a linux runner with bash available. Must be a distro supported by zerotier install script.
+
 TBD

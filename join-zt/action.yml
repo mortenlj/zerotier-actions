@@ -1,0 +1,31 @@
+name: 'Join ZeroTier'
+description: 'Join a ZeroTier network as an authenticated node'
+inputs:
+  network_id:
+    description: 'The 16 character network ID of the network the new members should join.'
+    required: true
+  api_accesstoken:
+    description: 'The access token needed to authorize with the ZeroTier API. You can generate one in your account settings at https://my.zerotier.com/.'
+    required: true
+  api_url:
+    description: 'The url where the Zerotier API lives. Must use HTTPS protocol.'
+    required: false
+    default: 'https://my.zerotier.com'
+outputs:
+  node_id:
+    description: 'The node_id given to this node. Useful for cleanup.'
+    value: ${{ steps.join-network.outputs.node-id }}
+runs:
+  using: "composite"
+  steps:
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+    - run: install_zt.sh
+      shell: bash
+#    - id: join-network
+#      run: join_network.sh
+#      env:
+#        network_id: ${{ inputs.network_id }}
+#        api_accesstoken: ${{ inputs.api_accesstoken }}
+#        api_url: ${{ inputs.api_url }}
+#      shell: bash
