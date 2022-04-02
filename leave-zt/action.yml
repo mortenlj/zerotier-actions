@@ -1,0 +1,18 @@
+name: 'Leave ZeroTier'
+description: 'Leave a ZeroTier network, and delete node'
+branding:
+  color: orange
+  icon: arrow-down-circle
+inputs:
+  network_id:
+    description: 'The 16 character network ID of the network the new members should join.'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+    - run: leave_network.sh
+      env:
+        NETWORK_ID: ${{ inputs.network_id }}
+      shell: bash

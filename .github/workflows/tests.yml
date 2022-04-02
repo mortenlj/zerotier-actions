@@ -23,3 +23,8 @@ jobs:
       - name: Verify connectivity
         shell: bash
         run: ./test_connectivity.sh
+      - name: Leave ZeroTier network
+        if: always()
+        uses: ./leave-zt
+        with:
+          network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
