@@ -14,7 +14,7 @@ echo "::set-output name=node-id::${node_id}"
 
 echo "Authorizing node"
 
-url="${API_URL}/api/network/${NETWORK_ID}/member/${node_id}"
+url="${API_URL}/api/v1/network/${NETWORK_ID}/member/${node_id}"
 
 curl --oauth2-bearer "${API_ACCESSTOKEN}" \
      --header "Content-Type: application/json" \
