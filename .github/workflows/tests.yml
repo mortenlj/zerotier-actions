@@ -22,4 +22,4 @@ jobs:
           api_accesstoken: ${{ secrets.ZEROTIER_API_ACCESSTOKEN }}
       - name: Verify connectivity
         shell: bash
-        run: test_connectivity.sh
+        run: ./test_connectivity.sh
