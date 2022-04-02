@@ -20,4 +20,7 @@ curl --oauth2-bearer "${API_ACCESSTOKEN}" \
      --header "Content-Type: application/json" \
      --header "Accept: application/json" \
      --data '{"hidden": false, "config": {"authorized": true}}' \
+     --output /dev/null \
+     --silent \
+     --show-error \
      "${url}"
