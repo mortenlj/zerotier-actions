@@ -6,3 +6,4 @@ set -o pipefail  # abort on pipe failures
 
 echo "Leaving network"
 sudo zerotier-cli leave "${NETWORK_ID}"
+

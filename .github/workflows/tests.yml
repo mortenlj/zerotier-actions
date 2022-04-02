@@ -6,6 +6,7 @@ on:
     paths:
       - test_*.sh
       - join-zt/*
+      - leave-zt/*
 
 concurrency: one-at-a-time
 
