@@ -5,11 +5,16 @@ branding:
   icon: arrow-up-circle
 inputs:
   network_id:
-    description: 'The 16 character network ID of the network the new members should join.'
-    required: true
+    description: 'The 16 character network ID of the network the new members should join. 
+    Defaults to the secret ZEROTIER_NETWORK_ID.'
+    required: false
+    default: ${{ secrets.ZEROTIER_NETWORK_ID }}
   api_accesstoken:
-    description: 'The access token needed to authorize with the ZeroTier API. You can generate one in your account settings at https://my.zerotier.com/.'
-    required: true
+    description: 'The access token needed to authorize with the ZeroTier API. 
+    You can generate one in your account settings at https://my.zerotier.com/. 
+    Defaults to the secret ZEROTIER_API_ACCESSTOKEN.'
+    required: false
+    default: ${{ secrets.ZEROTIER_API_ACCESSTOKEN }}
   api_url:
     description: 'The url where the Zerotier API lives. Must use HTTPS protocol.'
     required: false
