@@ -1,0 +1,19 @@
+#!/usr/bin/bash
+
+set -o errexit   # abort on nonzero exitstatus
+set -o nounset   # abort on unbound variable
+set -o pipefail  # abort on pipe failures
+
+echo "Joining network"
+
+sudo zerotier-cli join "${NETWORK_ID}"
+
+echo "Extracting node id"
+node_id=$(sudo zerotier-cli -j info | jq -r .address)
+echo "::set-output name=node-id::${node_id}"
+
+echo "Authorizing node"
+
+url="${API_URL}/api/network/${NETWORK_ID}/member/${node_id}"
+
+curl --oauth2-bearer "${API_ACCESSTOKEN}" --json '{"hidden": false, "config": {"authorized": true}}' "${url}"
