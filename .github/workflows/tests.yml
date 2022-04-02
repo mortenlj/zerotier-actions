@@ -16,7 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Join ZeroTier network
+      - id: join-zt
+        name: Join ZeroTier network
         uses: ./join-zt
         with:
           network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
@@ -28,4 +29,6 @@ jobs:
         if: always()
         uses: ./leave-zt
         with:
+          node_id: ${{ steps.join-zt.outputs.node_id }}
           network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
+          api_accesstoken: ${{ secrets.ZEROTIER_API_ACCESSTOKEN }}

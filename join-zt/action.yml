@@ -17,7 +17,7 @@ inputs:
     default: 'https://my.zerotier.com'
 outputs:
   node_id:
-    description: 'The node_id given to this node. Useful for cleanup.'
+    description: 'The node_id given to this node. Useful for leave-zt.'
     value: ${{ steps.join-network.outputs.node-id }}
 runs:
   using: "composite"

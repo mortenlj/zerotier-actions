@@ -4,9 +4,20 @@ branding:
   color: orange
   icon: arrow-down-circle
 inputs:
+  node_id:
+    description: 'The node that is leaving. Probably provided by the Join ZeroTier action.'
+    required: true
   network_id:
     description: 'The 16 character network ID of the network the new members should join.'
     required: true
+  api_accesstoken:
+    description: 'The access token needed to authorize with the ZeroTier API.
+    You can generate one in your account settings at https://my.zerotier.com/.'
+    required: true
+  api_url:
+    description: 'The url where the Zerotier API lives. Must use HTTPS protocol.'
+    required: false
+    default: 'https://my.zerotier.com'
 runs:
   using: "composite"
   steps:
@@ -14,5 +25,8 @@ runs:
       shell: bash
     - run: leave_network.sh
       env:
+        NODE_ID: ${{ inputs.node_id }}
         NETWORK_ID: ${{ inputs.network_id }}
+        API_ACCESSTOKEN: ${{ inputs.api_accesstoken }}
+        API_URL: ${{ inputs.api_url }}
       shell: bash
