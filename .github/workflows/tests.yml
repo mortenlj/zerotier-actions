@@ -1,4 +1,6 @@
 
+name: Test the actions
+
 on:
   push:
     paths:
