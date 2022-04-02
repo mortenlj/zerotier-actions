@@ -16,4 +16,8 @@ echo "Authorizing node"
 
 url="${API_URL}/api/network/${NETWORK_ID}/member/${node_id}"
 
-curl --oauth2-bearer "${API_ACCESSTOKEN}" --json '{"hidden": false, "config": {"authorized": true}}' "${url}"
+curl --oauth2-bearer "${API_ACCESSTOKEN}" \
+     --header "Content-Type: application/json" \
+     --header "Accept: application/json" \
+     --data '{"hidden": false, "config": {"authorized": true}}' \
+     "${url}"
