@@ -24,3 +24,8 @@ curl --oauth2-bearer "${API_ACCESSTOKEN}" \
      --silent \
      --show-error \
      "${url}"
+
+echo "Listing peers"
+sudo zerotier-cli peers
+echo "Status"
+sudo zerotier-cli info
