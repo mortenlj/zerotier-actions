@@ -25,7 +25,13 @@ curl --oauth2-bearer "${API_ACCESSTOKEN}" \
      --show-error \
      "${url}"
 
-echo "Listing peers"
-sudo zerotier-cli peers
-echo "Status"
-sudo zerotier-cli info
+for i in $(seq 60 -1 1); do
+  if [[ $(sudo zerotier-cli -j info | jq -r .online) != "true" ]]; then
+    echo "ZeroTier online"
+    exit 0
+  fi
+  echo "Waiting for ZeroTier connection ... ($i seconds remaining)"
+  sleep 1
+done
+
+exit 1
