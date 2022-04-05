@@ -26,7 +26,7 @@ curl --oauth2-bearer "${API_ACCESSTOKEN}" \
      "${url}"
 
 for i in $(seq 60 -1 1); do
-  if [[ $(sudo zerotier-cli -j info | jq -r .online) != "true" ]]; then
+  if [[ $(sudo zerotier-cli -j info | jq -r .online) == "true" ]]; then
     echo "ZeroTier online"
     exit 0
   fi
