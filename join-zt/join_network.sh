@@ -26,8 +26,9 @@ curl --oauth2-bearer "${API_ACCESSTOKEN}" \
      "${url}"
 
 for i in $(seq 60 -1 1); do
-  if [[ $(sudo zerotier-cli -j info | jq -r .online) == "true" ]]; then
-    echo "ZeroTier online"
+  if [[ $(sudo zerotier-cli -j info | jq -r .online) == "true" && $(sudo zerotierl-cli get "${NETWORK_ID}" status) == "OK" ]]; then
+    ip=$(sudo zerotier-cli get "${NETWORK_ID}" ip)
+    echo "ZeroTier online. You are ${node_id} on ${NETWORK_ID} with ip ${ip}."
     exit 0
   fi
   echo "Waiting for ZeroTier connection ... ($i seconds remaining)"
