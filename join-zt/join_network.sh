@@ -10,7 +10,7 @@ sudo zerotier-cli join "${NETWORK_ID}"
 
 echo "Extracting node id"
 node_id=$(sudo zerotier-cli -j info | jq -r .address)
-echo "::set-output name=node-id::${node_id}"
+echo "node-id=${node_id}" >> ${GITHUB_OUTPUT}
 
 echo "Authorizing node"
 
