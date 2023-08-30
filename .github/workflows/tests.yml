@@ -22,6 +22,7 @@ jobs:
         with:
           network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
           api_accesstoken: ${{ secrets.ZEROTIER_API_ACCESSTOKEN }}
+          ping_target: emrys.home.zt.ibidem.no
       - name: Verify connectivity
         shell: bash
         run: ./test_connectivity.sh
