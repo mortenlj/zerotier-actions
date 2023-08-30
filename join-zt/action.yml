@@ -15,6 +15,10 @@ inputs:
     description: 'The url where the Zerotier API lives. Must use HTTPS protocol.'
     required: false
     default: 'https://my.zerotier.com'
+  ping_target:
+    description: 'A host or IP that should respond to ping before considering the network joined.'
+    required: false
+    default: ''
 outputs:
   node_id:
     description: 'The node_id given to this node. Useful for leave-zt.'
@@ -33,3 +37,7 @@ runs:
         API_ACCESSTOKEN: ${{ inputs.api_accesstoken }}
         API_URL: ${{ inputs.api_url }}
       shell: bash
+    - run: test_connectivity.sh
+      shell: bash
+      env:
+        PING_TARGET: ${{ inputs.ping_target }}
